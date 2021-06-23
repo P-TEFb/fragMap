@@ -4,11 +4,11 @@ Creates heatmaps displaying the total number of fragments across genomic positio
 Author: Mrutyunjaya Parida, David Price lab, UIOWA
 
 ## Usage:
-ABD runs on Python 2.7+ interpreter installed on your desired operating system of choice such as Windows, Mac or Linux. 
+fragMap pipeline runs on Python 2.7+ interpreter and R 3.6.3v installed on your desired operating system of choice such as Windows, Mac or Linux. 
 
-ABD program needs 4 mandatory parameters to run as described below.
+fragMap-table program needs the following mandatory parameters to run as described below.
 ```
-python ABD <mapped-fragments.bed> <genome-sequence.fa> <output-file-prefix> <number-of-cores>
+python fragMap-table <genomic-intervals.bed> <mapped-fragments.bed> <number of genomic intervals>
 
-Example run: python ABD Sample1.deduped.bed /home/xyz-user/genomes/hg38.genome.fa Pol-II 20
+Example run: python fragMap-table intervals.bed Sample1.bed 25000
 ```
