@@ -16,5 +16,5 @@ Second, the fragMap-tick program duplicates the rows and columns of the fragMap 
 ```
 python fragMap-tick <mapped-fragments.datatable.csv> <fragMap height> <fragMap width> <tick size> <mapped-fragments.datatable.max>
 
-Example run: python fragMap-tick Sample1-fragMap-datatable.csv 4 1 10 Sample1-fragMap-datatable.max   
+Example run: python fragMap-tick Sample1.datatable.csv 4 1 10 Sample1.datatable.max   
 ```
