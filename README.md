@@ -19,3 +19,10 @@ python fragMap-tick <mapped-fragments.data-table.csv> <fragMap height> <fragMap 
 
 Example run: python fragMap-tick Sample1.data-table.csv 4 1 10 Sample1.data-table.max   
 ```
+
+Third, the R script makes the fragMap image from the fragMap data table. The following parameters are used to run this program.
+```
+Rscript fragMap.R <mapped-fragments.data-table.csv> <mapped-fragments.data-table.max>
+
+Example run: Rscript fragMap.R Sample1.data-table.csv Sample1.data-table.max   
+```
