@@ -4,7 +4,7 @@ Creates heatmaps displaying the total number of fragments of each fragment size 
 Author: Mrutyunjaya Parida, David Price lab, UIOWA
 
 ## Usage:
-fragMap pipeline runs on Python 2.7+ interpreter and R 3.6.3v installed on your desired operating system of choice such as Windows, Mac or Linux. The code is avialable here for download: https://drive.google.com/file/d/1cPIhkDtagXnBZY1jP7DNyDltoLr8vjmM/view?usp=sharing
+fragMap pipeline runs on Python 2.7+ interpreter and R 3.6.3v installed on your desired operating system of choice such as Windows, Mac or Linux.
 
 First, the fragMap-table program make a data table in csv format with a outputfilename.txt extension containing total number of mapped fragments of a specific size for each basepair across intervals using the following parameters as described below.
 ```
