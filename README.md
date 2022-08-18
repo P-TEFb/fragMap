@@ -17,7 +17,7 @@ Second, the fragMap-tick program duplicates the rows and columns of the fragMap 
 ```
 python TICKMARKS-3px-GENOMICINTERVALS.py <mapped-fragments.data-table.txt> <fragMap height> <fragMap width> <tick length> <mapped-fragments.data-table.max>
 
-Example run: python fragMap-tick Sample1.data-table.csv 4 1 10 Sample1.data-table.max
+Example run: python TICKMARKS-3px-GENOMICINTERVALS.py Sample1.data-table.txt 4 1 10 Sample1.data-table.max
 ```
 
 Third, the R script makes the fragMap image from the fragMap data table. The following parameters are used to run this program.
