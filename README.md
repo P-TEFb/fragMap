@@ -46,25 +46,27 @@ python fragMap.py <regions> \
 Example command usage: 
 python fragMap.py plusminus1000_from_TSS_1000genes.bed \
                   TBP-DFF-ChIP-Seq.bed \
-                  Small \
+                  -o TBP /home/user/dir \
+                  -r 20 1000 \
+                  -x 0.1 \
 
 ```
 # Parameter description #
 ```
+### Required positional arguments ###
 regions: <str> Bed file of genomic regions of chosen length.
 
 fragments: <str> Bed file of fragment positions
 
-fragment_type: <str> Choose Small, Large or Custom (Small = 380 bp with 4 horizontal lines/bp x 2,000 bp | Large = 980 bp x 20,000 bp with 1 vertical line/10 bp | Custom = fragment lengths and genomic region chosen by user.
+-o: <str> Image identifier and path to output, for example -o TBP /home/user/dir
 
 -r: <int> Range of fragment sizes, for exmaple -r 20 400
 
+### Optional arguments ###
 -b: <int> Sets the chosen value as black, default is largest number in the matrix
 
 -y: <int> Horizontal lines/bp for each fragment length
 
 -x: <float> Vertical lines/bp for each genomic interval displayed, for example -x 1 is one vertical line/bp; -x 0.1 is one vertical line/10 bp
-
--o: <str> Image identifier and path to output, for example -o TBP /home/user/dir
 
 ```
