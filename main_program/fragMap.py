@@ -7,8 +7,7 @@ import argparse
 
 def run_bedtools(regions, reads):
     '''
-    Checks that all regions in the file are of the same length and that they 
-    match the chosen fragmap type before running bedtools.    
+    Checks that all regions in the file are of the same length before running bedtools.    
     '''
     
     # Check if every region has the same size
