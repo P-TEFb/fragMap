@@ -65,8 +65,8 @@ fragments: <str> Bed file of fragment positions
 ### Optional arguments ###
 -b: <int> Sets the chosen value as black, default is largest number in the matrix
 
--y: <int> Horizontal lines/bp for each fragment length
+-y: <int> Horizontal lines/bp for each fragment length, default is 1
 
--x: <float> Vertical lines/bp for each genomic interval displayed, for example -x 1 is one vertical line/bp; -x 0.1 is one vertical line/10 bp
+-x: <float> Vertical lines/bp for each genomic interval displayed, for example -x 1 is one vertical line/bp; -x 0.1 is one vertical line/10 bp, default is 1
 
 ```
