@@ -52,8 +52,8 @@ python fragMap.py plusminus1000_from_TSS_1000genes.bed \
 
 ```
 # Parameter description #
-```
 ### Required positional arguments ###
+```
 regions: <str> Bed file of genomic regions of chosen length.
 
 fragments: <str> Bed file of fragment positions
@@ -61,8 +61,9 @@ fragments: <str> Bed file of fragment positions
 -o: <str> Image identifier and path to output, for example -o TBP /home/user/dir
 
 -r: <int> Range of fragment sizes, for exmaple -r 20 400
-
+```
 ### Optional arguments ###
+```
 -b: <int> Sets the chosen value as black, default is largest number in the matrix
 
 -y: <int> Horizontal lines/bp for each fragment length, default is 1
