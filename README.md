@@ -28,7 +28,8 @@ Numpy: https://pypi.org/project/numpy/
 
 Matplotlib: https://matplotlib.org/stable/users/installing/index.html
 
-bedtools: https://bedtools.readthedocs.io/en/latest/content/installation.html
+### Program used to obtain the fragments overlapping the genomic intervals ###
+bedtools: https://bedtools.readthedocs.io/en/latest/content/installation.html, developed by the Quinlan laboratory at the University of Utah. 
 
 # Example of arguments #
 ```
