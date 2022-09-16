@@ -52,7 +52,7 @@ python fragMap.py plusminus1000_from_TSS_1000genes.bed \
 
 ```
 # Parameter description #
-### Required positional arguments ###
+### Required arguments ###
 ```
 regions: <str> Bed file of genomic regions of chosen length.
 
