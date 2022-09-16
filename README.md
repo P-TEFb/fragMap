@@ -1,5 +1,6 @@
 # fragMap.py #
 Juan F. Santana, Ph.D. <juan-santana@uiowa.edu>, University of Iowa, Iowa City, I.A.
+
 David H. Price, Ph.D. <david-price@uiowa.edu>, University of Iowa, Iowa City, I.A.
 
 This script runs on Python 3+ in Linux operating system. It will create fragment heatmaps from specific range of fragment sizes over a chosen genomic interval as described here [Spector et al., 2022](https://www.nature.com/articles/s41467-022-29739-x) and here [Santana et al., 2022](https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkac678/6659871?guestAccessKey=88024805-7d8e-4421-a032-dbef1c737757). Best used for unstranded data such as ChIP-seq.
