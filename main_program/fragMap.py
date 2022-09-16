@@ -24,8 +24,8 @@ def run_bedtools(regions, reads):
 
 def main(data_file,frags_filtering, max_val, output_directory, height, width, identifier):
     '''
-    Gets bedtools output by uploading only a slected number of columns.
-    Calculates fragment sizes, selected them based on fragmap type and calucaltes coordinates of the fragments by strandeness of regions.
+    Gets bedtools output by uploading only a selected number of columns.
+    Calculates fragment sizes, calculates coordinates of the fragments by strandeness of regions.
     Runs the second program associated with fragmap.py    
     '''
     
@@ -99,7 +99,7 @@ if __name__ == '__main__':
     width = args.x_axis
     output_directory, identifier = args.output_dir
 
-    if len(sys.argv[1:]) != 3:
+    if len(sys.argv[1:]) != 4:
         sys.argv.append('--help')
     try:
         fragment_sizes = str(fragment_sizes[0])+"-"+str(fragment_sizes[1])
