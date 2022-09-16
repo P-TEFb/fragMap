@@ -3,7 +3,7 @@ Juan F. Santana, Ph.D. (<juan-santana@uiowa.edu>), University of Iowa, Iowa City
 
 David H. Price, Ph.D. (<david-price@uiowa.edu>), University of Iowa, Iowa City, I.A.
 
-This script runs on Python 3+ in Linux operating system. It will create fragment heatmaps from specific range of fragment sizes over a chosen genomic interval as described here [Spector et al., 2022](https://www.nature.com/articles/s41467-022-29739-x) and here [Santana et al., 2022](https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkac678/6659871?guestAccessKey=88024805-7d8e-4421-a032-dbef1c737757). 
+The fragMap program (split into two python files: fragMap.py and fragMap_associated_script.py - please maintain both files in the same directory) runs on Python 3+ in Linux operating system (due to the use of the bedtools program dicussed below). It will create fragment heatmaps from specific range of fragment sizes over a chosen genomic interval as described here [Spector et al., 2022](https://www.nature.com/articles/s41467-022-29739-x) and here [Santana et al., 2022](https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkac678/6659871?guestAccessKey=88024805-7d8e-4421-a032-dbef1c737757). 
 
 # File requirements #
 The input regions file should be a six column tab delimited bed file that contains chromosome, start and end positions as well as the strand information for each region.  
@@ -35,7 +35,6 @@ bedtools: https://bedtools.readthedocs.io/en/latest/content/installation.html, d
 ```
 python fragMap.py <regions> \
                   <fragments> \
-                  <fragment_type> \
                   -r \
                   -b \
                   -y \
@@ -45,10 +44,10 @@ python fragMap.py <regions> \
 
 Example command usage: 
 python fragMap.py plusminus1000_from_TSS_1000genes.bed \
-                  TBP-DFF-ChIP-Seq.bed \
-                  -o TBP /home/user/dir \
-                  -r 20 1000 \
-                  -x 0.1 \
+                  PolII-DFF-ChIP-Seq.bed \
+                  -o PolII /home/user/dir \
+                  -r 20 400 \
+                  -y 4 \
 
 ```
 # Parameter description #
