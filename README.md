@@ -68,6 +68,6 @@ fragments: <str> Bed file of fragment positions
 
 -y: <int> (value greater or equal to 1) Horizontal lines/bp for each fragment length, default is 1
 
--x: <float> (value less or euqal to 1) Vertical lines/bp for each genomic interval displayed, for example -x 1 is one vertical line/bp; -x 0.1 is one vertical line/10 bp, default is 1
+-x: <float> (value less or equal to 1) Vertical lines/bp for each genomic interval displayed, for example -x 1 is one vertical line/bp; -x 0.1 is one vertical line/10 bp, default is 1
 
 ```
