@@ -58,16 +58,16 @@ regions: <str> Bed file of genomic regions of chosen length.
 
 fragments: <str> Bed file of fragment positions
 
--o: <str> Image identifier and path to output, for example -o TBP /home/user/dir
+-o: <str> <str> Image identifier and path to output, for example -o TBP /home/user/dir
 
--r: <int> Range of fragment sizes, for exmaple -r 20 400
+-r: <int> <int> Range of fragment sizes, for exmaple -r 20 400
 ```
 ### Optional arguments ###
 ```
 -b: <int> Sets the chosen value as black, default is largest number in the matrix
 
--y: <int> Horizontal lines/bp for each fragment length, default is 1
+-y: <int> (value greater or equal to 1) Horizontal lines/bp for each fragment length, default is 1
 
--x: <float> Vertical lines/bp for each genomic interval displayed, for example -x 1 is one vertical line/bp; -x 0.1 is one vertical line/10 bp, default is 1
+-x: <float> (value less or euqal to 1) Vertical lines/bp for each genomic interval displayed, for example -x 1 is one vertical line/bp; -x 0.1 is one vertical line/10 bp, default is 1
 
 ```
