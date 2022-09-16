@@ -1,28 +1,67 @@
-# fragMap
-Creates heatmaps displaying the total number of fragments of each fragment size across intervals of a specific size.
+# fragMap.py #
+Author: Juan F. Santana, Ph.D. and David H. Price, Ph.D. - University of Iowa
 
-Author: Mrutyunjaya Parida, David Price lab, UIOWA
+This script runs on Python 3+ in Linux operating system. It will create fragment heatmaps from specific range of fragment sizes over a chosen genomic interval as described here [Spector et al., 2022](https://www.nature.com/articles/s41467-022-29739-x) and here [Santana et al., 2022](https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkac678/6659871?guestAccessKey=88024805-7d8e-4421-a032-dbef1c737757). Best used for unstranded data such as ChIP-seq.
 
-## Usage:
-fragMap pipeline runs on Python 2.7+ interpreter and R 3.6.3v installed on your desired operating system of choice such as Windows, Mac or Linux.
+# File requirements #
+The input regions file should be a six column tab delimited bed file that contains chromosome, start and end positions as well as the strand information for each region.  
+ 
+| chr6 | 142946246 | 142946446 | Gene_A | 255 | - |
+|:----:|:---------:|:---------:|:------:|:---:|:-:|
 
-First, the fragMap-table program make a data table in csv format with a outputfilename.txt extension containing total number of mapped fragments of a specific size for each basepair across intervals using the following parameters as described below. The Code can be downloaded from here: https://drive.google.com/file/d/1cPIhkDtagXnBZY1jP7DNyDltoLr8vjmM/view?usp=sharing
+The input fragments file should be a six column tab delimited bed file that contains chromosome, start and end positions as well as the strand information for each fragment.
+
+| chr6 | 142946247 | 142946248 | A00876:119:HW5F5DRXX:2:2207:29170:1157 | 255 | - |
+|:----:|:---------:|:---------:|:--------------------------------------:|:---:|:-:|
+
+
+# Behavior #
+Generates a fragMap from specific range of fragment sizes over a chosen genomic interval. 
+
+# Dependencies #
+### Python libraries ###
+Pandas: https://pypi.org/project/pandas/
+
+Numpy: https://pypi.org/project/numpy/
+
+Matplotlib: https://matplotlib.org/stable/users/installing/index.html
+
+bedtools: https://bedtools.readthedocs.io/en/latest/content/installation.html
+
+# Example of arguments #
 ```
-python FRAGMAP-TABLE.py <genomic-intervals.bed> <mapped-fragments.bed> <number of genomic intervals>
+python fragMap.py <regions> \
+                  <fragments> \
+                  <fragment_type> \
+                  -r \
+                  -b \
+                  -y \
+                  -x \
+                  -o \
 
-Example run: python FRAGMAP-TABLE.py intervals.bed Sample1.bed 25000
+
+Example command usage: 
+python fragMap.py plusminus1000_from_TSS_1000genes.bed \
+                  TBP-DFF-ChIP-Seq.bed \
+                  Small \
+
 ```
-
-Second, the fragMap-tick program duplicates the rows and columns of the fragMap data table as per the user's preference to maintain a certain height, width, and aspect ratio of the final image. Additionally, the fragMap-tick program adds major and minor tickmarks of a specific size on the bottom and right side of the fragMap data table. The following parameters are used to run this program.
+# Parameter description #
 ```
-python TICKMARKS-3px-GENOMICINTERVALS.py <mapped-fragments.data-table.txt> <fragMap height> <fragMap width> <tick length> <mapped-fragments.data-table.max>
+regions: <str> Bed file of genomic regions of chosen length.
 
-Example run: python TICKMARKS-3px-GENOMICINTERVALS.py Sample1.data-table.txt 4 1 10 Sample1.data-table.max
-```
+fragments: <str> Bed file of fragment positions
 
-Third, the R script makes the fragMap image from the fragMap data table. The following parameters are used to run this program.
-```
-Rscript FMAP.R <mapped-fragments.data-table.csv> <mapped-fragments.data-table.max>
+fragment_type: <str> Choose Small, Large or Custom (Small = 380 bp with 4 horizontal lines/bp x 2,000 bp | Large = 980 bp x 20,000 bp with 1 vertical line/10 bp | Custom = fragment lengths and genomic region chosen by user.
 
-Example run: Rscript FMAP.R Sample1.data-table.csv Sample1.data-table.max   
+-r: <int> Range of fragment sizes, for exmaple -r 20 400
+
+-b: <int> Sets the chosen value as black, default is largest number in the matrix
+
+-y: <int> Horizontal lines/bp for each fragment length
+
+-x: <float> Vertical lines/bp for each genomic interval displayed, for example -x 1 is one vertical line/bp; -x 0.1 is one vertical line/10 bp
+
+-o: <str> Image identifier and path to output, for example -o TBP /home/user/dir
+
 ```
