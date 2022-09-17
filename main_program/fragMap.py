@@ -106,17 +106,9 @@ if __name__ == '__main__':
     except (TypeError, AttributeError, ValueError):
         print('Missing range argument. Fragment size range example: -r 20 400')
         sys.exit()
-    try:
-        int(height)
-    except (TypeError, AttributeError, ValueError):
-        print("Missing -y argument. y must be int")
+    if float(width) > 1:
+        print("Missing -x argument. x must be int or float less than or equal to 1")
         sys.exit()
-    try:
-        float(width) or int(width)
-    except (TypeError, AttributeError, ValueError):
-        print("Missing -x argument. x must be int or float")
-        sys.exit()
-
     if max_val != 'default':
         try:
             int(max_val) or float(max_val)
