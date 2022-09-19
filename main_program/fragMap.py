@@ -14,8 +14,7 @@ def run_bedtools(regions, reads):
     dff = pd.read_csv(regions, sep="\t", header=None)
     dff['region_size'] = dff[2] - dff[1]
     if len(dff['region_size'].unique()) != 1:
-        print("Regions are not all of the same length")
-        sys.exit()
+        sys.exit("Regions are not all of the same length")
 
     temp_data_bedtools = Path(Path.cwd(),'bedtools_output.bed')
     subprocess.call(' '.join(['bedtools intersect -a', regions, '-b', reads, '-wa', '-wb', '>', str(temp_data_bedtools)]), shell=True)
@@ -58,8 +57,7 @@ def main(data_file,frags_filtering, max_val, output_directory, height, width, id
     size_right = int(lengths[1]) # NOT inclusive
 
     if size_left > size_right:
-        print("Fragment size range is incorrect")
-        sys.exit()            
+        sys.exit("Fragment size range is incorrect")            
 
     df_bedtools = df_bedtools.loc[(df_bedtools['Fragment_size'] >= size_left) & (df_bedtools['Fragment_size'] < size_right)].reset_index(drop=True)
     
@@ -104,17 +102,14 @@ if __name__ == '__main__':
     try:
         fragment_sizes = str(fragment_sizes[0])+"-"+str(fragment_sizes[1])
     except (TypeError, AttributeError, ValueError):
-        print('Missing range argument. Fragment size range example: -r 20 400')
-        sys.exit()
+        sys.exit('Missing range argument. Fragment size range example: -r 20 400')
     if float(width) > 1:
-        print("Missing -x argument. x must be int or float less than or equal to 1")
-        sys.exit()
+        sys.exit("Missing -x argument. x must be int or float less than or equal to 1")
     if max_val != 'default':
         try:
             int(max_val) or float(max_val)
         except (TypeError, AttributeError, ValueError):
-            print("black value: int or default")
-            sys.exit() 
+            sys.exit("black value: int or default") 
     
     bedtools_file_path = run_bedtools(file, read_file)    
     main(bedtools_file_path, fragment_sizes, max_val, output_directory, height, width, identifier)
