@@ -80,3 +80,6 @@ Example output from Pol II DFF-Seq performed on HFF cells ([Spector et al., 2022
 
 PolII_fragMap_20-400_Max_68609_X_1 0_Y_4_Gamma_1.0 
 ![PolII_fragMap_Custom_20-400_Max_68609_X_1 0_Y_4 0_](https://user-images.githubusercontent.com/38702786/190675335-1b8271ef-a0f7-449e-9ac3-aeee7dca6611.png)
+
+PolII_fragMap_20-400_Max_68609_X_1 0_Y_4_Gamma_0.5
+![PolII_fragMap_20-400_Max_68609_X_1 0_Y_4 0_Gamma_0 5_](https://user-images.githubusercontent.com/38702786/191344898-fc082eb6-6c3c-4b12-a6f1-8ef62ef5047c.png)
