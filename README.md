@@ -3,7 +3,7 @@ Juan F. Santana, Ph.D. (<juan-santana@uiowa.edu>), University of Iowa, Iowa City
 
 David H. Price, Ph.D. (<david-price@uiowa.edu>), University of Iowa, Iowa City, I.A.
 
-The fragMap program (split into two python files: fragMap.py and fragMap_associated_script.py - please maintain both files in the same directory) runs on Python 3+ in Linux operating system (due to the use of the bedtools program discussed below). It will create fragment heatmaps from specific range of fragment sizes over a chosen genomic interval as described here [Spector et al., 2022](https://www.nature.com/articles/s41467-022-29739-x) and here [Santana et al., 2022](https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkac678/6659871?guestAccessKey=88024805-7d8e-4421-a032-dbef1c737757). 
+The fragMap program (split into two python files: fragMap.py and fragMap_associated_script.py - please maintain both files in the same directory) runs on Python 3+ in Linux operating system (due to the use of the bedtools program discussed below). It will create fragment heatmaps from specific range of fragment sizes over a chosen genomic interval as described in [Spector et al., 2022](https://www.nature.com/articles/s41467-022-29739-x) and [Santana et al., 2022](https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkac678/6659871?guestAccessKey=88024805-7d8e-4421-a032-dbef1c737757). 
 
 # File requirements #
 The input regions file should be a six column tab delimited bed file that contains chromosome, start and end positions as well as the strand information for each region. The regions can be of any length as long as the length is an even number and the center is a feature under study (e.g. transcription start site [TSS]). 
