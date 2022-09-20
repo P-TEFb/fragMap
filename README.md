@@ -67,7 +67,7 @@ fragments: <str> Bed file of fragment positions with the format described above
 
 -y: <int> (value greater than or equal to 1) Horizontal lines/bp for each fragment length, default is 1
 
--x: <float> or <int> (value less than or equal to 1) Vertical lines/bp for each genomic interval displayed, for example -x 1 is one vertical line/bp; -x 0.1 is one vertical line/10 bp, default is 1
+-x: <float> or <int> (value less than or equal to 1) Vertical lines/bp for each genomic interval displayed, for example -x 1 is one vertical line/bp; -x 0.1 is one vertical line/averaged 10 bp, default is 1
 
 ```
 Example output: PolII_fragMap_20-400_Max_68609_X_1 0_Y_4 (Pol II DFF-Seq performed on HFF cells ([Spector et al., 2022](https://www.nature.com/articles/s41467-022-29739-x)) over +/- 1000 bp regions from the MaxTSS of 12,229 genes in HFF cells determined with PRO-Cap ([Nilson et al., 2022](https://doi.org/10.1093/nar/gkac678))).
