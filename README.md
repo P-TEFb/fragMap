@@ -39,6 +39,7 @@ python3 fragMap.py <regions> \
                   -b \
                   -y \
                   -x \
+                  -g \
                   -o \
 
 
@@ -48,6 +49,7 @@ python3 fragMap.py plusminus1000_from_TSS_1000genes.bed \
                   -o PolII /home/user/dir \
                   -r 20 400 \
                   -y 4 \
+                  -g 0.5
 
 ```
 # Parameter description #
@@ -69,6 +71,10 @@ fragments: <str> Bed file of fragment positions with the format described above
 
 -x: <float> or <int> (value less than or equal to 1) Vertical lines/bp for each genomic interval displayed, for example -x 1 is one vertical line/bp; -x 0.1 is one vertical line/averaged 10 bp, default is 1
 
+-g: <float> Gamma correction factor, default is 1 (for more information: https://en.wikipedia.org/wiki/Gamma_correction)
+
 ```
-Example output: PolII_fragMap_20-400_Max_68609_X_1 0_Y_4 (Pol II DFF-Seq performed on HFF cells ([Spector et al., 2022](https://www.nature.com/articles/s41467-022-29739-x)) over +/- 1,000 bp regions from the MaxTSS of 12,229 genes in HFF cells determined with PRO-Cap ([Nilson et al., 2022](https://doi.org/10.1093/nar/gkac678))).
+Example output: 
+
+PolII_fragMap_20-400_Max_68609_X_1 0_Y_4 (Pol II DFF-Seq performed on HFF cells ([Spector et al., 2022](https://www.nature.com/articles/s41467-022-29739-x)) over +/- 1,000 bp regions from the MaxTSS of 12,229 genes in HFF cells determined with PRO-Cap ([Nilson et al., 2022](https://doi.org/10.1093/nar/gkac678))).
 ![PolII_fragMap_Custom_20-400_Max_68609_X_1 0_Y_4 0_](https://user-images.githubusercontent.com/38702786/190675335-1b8271ef-a0f7-449e-9ac3-aeee7dca6611.png)
