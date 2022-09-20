@@ -33,7 +33,7 @@ bedtools: https://bedtools.readthedocs.io/en/latest/content/installation.html, d
 
 # Example of arguments #
 ```
-python fragMap.py <regions> \
+python3 fragMap.py <regions> \
                   <fragments> \
                   -r \
                   -b \
@@ -43,7 +43,7 @@ python fragMap.py <regions> \
 
 
 Example command usage: 
-python fragMap.py plusminus1000_from_TSS_1000genes.bed \
+python3 fragMap.py plusminus1000_from_TSS_1000genes.bed \
                   PolII-DFF-ChIP-Seq.bed \
                   -o PolII /home/user/dir \
                   -r 20 400 \
