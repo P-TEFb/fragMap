@@ -7,6 +7,7 @@ from pathlib import Path
 from matplotlib import pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from matplotlib.ticker import (MultipleLocator, AutoMinorLocator)
+from PIL import Image
 
 def worker(total_rows):
     '''
@@ -87,7 +88,7 @@ def modifiy_base_per_pixel(table, height, width):
 
     return final_matrix
 
-def plt_image(df_matrix, black_val, frag_range, output_directory, height, width, identifier, region_size): 
+def plt_image(df_matrix, black_val, frag_range, output_directory, height, width, identifier, region_size, gamma): 
     '''
     Creates an image from a matrix
     '''
@@ -127,7 +128,7 @@ def plt_image(df_matrix, black_val, frag_range, output_directory, height, width,
      
     plt.xticks(real_xcoor, xlabels) 
     plt.yticks(conversion_arrayrow(ylabels), ylabels)  
-    image_path = Path(output_directory,"_".join([identifier, "fragMap", frag_range,"Max", str(black_val), "X", str(width), "Y", str(height), ".png"]))
+    image_path = Path(output_directory,"_".join([identifier, "fragMap", frag_range,"Max", str(black_val), "X", str(width), "Y", str(height), "Gamma", str(gamma), ".png"]))
     
     ax = fig.gca()
     
@@ -143,11 +144,29 @@ def plt_image(df_matrix, black_val, frag_range, output_directory, height, width,
     cbar.outline.set_linewidth(0.1)
 
     plt.savefig(image_path, format='png', facecolor='w', bbox_inches='tight')
-    
-    plt.close()
+
+    def gammma(x, r):
+        """
+        From: https://linuxtut.com/en/c3cd5475663c41d9f154/
+        Gamma correction y=255*(x/255) 
+        x Input image
+        r Gamma correction coefficient
+        """
+        x = np.float64(x)
+        y = x/255.
+        y = y **(1/r)
+        
+        return np.uint8(255*y)
+
+    if gamma != 1.0:
+        img = Image.open(image_path)
+        img_gamma = gammma(img, gamma)
+        plt.imsave(image_path, img_gamma)
           
+    plt.close()
+    
 if __name__ == '__main__':
-    file, rows, black_val, range_frag, output_directory, region_size, height, width, identifier = sys.argv[1:]
+    file, rows, black_val, range_frag, output_directory, region_size, height, width, identifier, gamma = sys.argv[1:]
 
     chunksize = worker(int(rows))
 
@@ -161,10 +180,9 @@ if __name__ == '__main__':
     big_df = make_matrix(df_to_graph, range_frag, int(region_size))
 
     if float(height) == 1.0 and float(width) == 1.0:
-        plt_image(big_df.to_numpy(), black_val, range_frag, output_directory, float(height), float(width), identifier, int(region_size))
+        plt_image(big_df.to_numpy(), black_val, range_frag, output_directory, float(height), float(width), identifier, int(region_size), float(gamma))
 
     else:
         avg_df = modifiy_base_per_pixel(big_df, float(height), float(width))
         # matplotlib input is numpy array
-        plt_image(avg_df.to_numpy(), black_val, range_frag, output_directory, float(height), float(width), identifier, int(region_size))
-     
+        plt_image(avg_df.to_numpy(), black_val, range_frag, output_directory, float(height), float(width), identifier, int(region_size), float(gamma))
