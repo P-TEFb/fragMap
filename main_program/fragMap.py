@@ -21,7 +21,7 @@ def run_bedtools(regions, reads):
     
     return temp_data_bedtools
 
-def main(data_file,frags_filtering, max_val, output_directory, height, width, identifier):
+def main(data_file,frags_filtering, max_val, output_directory, height, width, identifier, gamma):
     '''
     Gets bedtools output by uploading only a selected number of columns.
     Calculates fragment sizes, calculates coordinates of the fragments by strandeness of regions.
@@ -64,7 +64,7 @@ def main(data_file,frags_filtering, max_val, output_directory, height, width, id
     temp_data = Path(Path.cwd(),'data.bed')
     df_bedtools.to_csv(temp_data, sep="\t", index=False, header=False)
     
-    subprocess.run(['python3', 'fragMap_associated_script.py', temp_data, str(total_rows), str(max_val), str(fragment_sizes), output_directory, str(region_size), str(height), str(width), identifier])
+    subprocess.run(['python3', 'fragMap_associated_script.py', temp_data, str(total_rows), str(max_val), str(fragment_sizes), output_directory, str(region_size), str(height), str(width), identifier, str(gamma)])
 
     temp_data.unlink()
     
@@ -84,6 +84,8 @@ if __name__ == '__main__':
                         help='Horizontal lines/bp for each fragment length')
     parser.add_argument('-x', dest="x_axis", metavar='\b', type=float, default=1.0,
                         help='Vertical lines/bp for each genomic interval displayed, for example -x 1 is one vertical line/bp; -x 0.1 is one vertical line/10 bp')
+    parser.add_argument('-g', dest="gamma", metavar='\b', type=float, default=1.0,
+                        help='Gamma correction')
     parser.add_argument('-o', dest="output_dir", metavar='\b', type=str, required=True, nargs=2,
                         help='Image identifier and path to output, for example -o TBP /home/user/dir')
 
@@ -95,6 +97,7 @@ if __name__ == '__main__':
     max_val = args.black
     height = args.y_axis
     width = args.x_axis
+    gamma = args.gamma
     output_directory, identifier = args.output_dir
 
     if len(sys.argv[1:]) != 4:
@@ -112,6 +115,6 @@ if __name__ == '__main__':
             sys.exit("black value: int or default") 
     
     bedtools_file_path = run_bedtools(file, read_file)    
-    main(bedtools_file_path, fragment_sizes, max_val, output_directory, height, width, identifier)
+    main(bedtools_file_path, fragment_sizes, max_val, output_directory, height, width, identifier, gamma)
     # delete temp file
     bedtools_file_path.unlink()
