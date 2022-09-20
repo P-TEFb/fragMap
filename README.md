@@ -57,7 +57,7 @@ regions: <str> Bed file of genomic regions of chosen length with the format desc
 
 fragments: <str> Bed file of fragment positions with the format described above
 
--o: <str> <str> Image identifier and path to output, for example -o TBP /home/user/dir
+-o: <str> <str> Image identifier and path to output directory, for example -o TBP /home/user/dir
 
 -r: <int> <int> Range of fragment sizes, for example -r 20 400
 ```
