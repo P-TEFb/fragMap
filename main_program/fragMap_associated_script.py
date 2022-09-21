@@ -153,7 +153,7 @@ def plt_image(df_matrix, black_val, frag_range, output_directory, height, width,
         r Gamma correction coefficient
         """
         x = np.float64(x)
-        y = x/255.
+        y = x/255
         y = y **(1/r)
         
         return np.uint8(255*y)
