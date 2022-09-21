@@ -6,12 +6,12 @@ David H. Price, Ph.D. (<david-price@uiowa.edu>), University of Iowa, Iowa City, 
 The fragMap program is split into two python scripts: fragMap.py and fragMap_associated_script.py which should be in the same directory. The program requires Linux operating system and Python 3+. It will create fragment heatmaps from specific range of fragment sizes over a chosen genomic interval as described in [Spector et al., 2022](https://www.nature.com/articles/s41467-022-29739-x) and [Santana et al., 2022](https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkac678/6659871?guestAccessKey=88024805-7d8e-4421-a032-dbef1c737757). 
 
 # File requirements #
-The input regions file should be a six column tab delimited bed file that contains chromosome, start and end positions as well as the strand information for each region. The regions can be of any length as long as the length is an even number and the center is a feature under study (e.g. transcription start site (TSS)). 
+The input regions file should be a six column, tab delimited bed file that contains chromosome, start and end positions as well as the strand information for each region. The regions can be of any length as long as it is an even number and the center is a feature under study (e.g. transcription start site). 
  
 | chr6 | 142946246 | 142946446 | Gene_A | 255 | - |
 |:----:|:---------:|:---------:|:------:|:---:|:-:|
 
-The input fragments file should be a six column tab delimited bed file that contains chromosome, start and end positions as well as the strand information for each fragment.
+The input fragments file should be a six column, tab delimited bed file that contains chromosome, start and end positions as well as the strand information for each fragment.
 
 | chr6 | 142946247 | 142946248 | A00876:119:HW5F5DRXX:2:2207:29170:1157 | 255 | - |
 |:----:|:---------:|:---------:|:--------------------------------------:|:---:|:-:|
