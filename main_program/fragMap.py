@@ -76,7 +76,7 @@ if __name__ == '__main__':
                         help='Bed file of genomic regions of chosen length')
     parser.add_argument('fragments', type=str,
                         help='Bed file of fragment positions')
-    parser.add_argument('-r', dest="range", metavar='\b', type=int, nargs=2,
+    parser.add_argument('-r', dest="range", metavar='\b', type=int, nargs=2, required=True,
                         help='Range of fragment sizes, for exmaple -r 20 400')
     parser.add_argument('-b', dest="black", metavar='\b', default='default',
                         help='Sets the chosen value as black, default is largest number in the matrix')
