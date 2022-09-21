@@ -71,9 +71,8 @@ def modifiy_base_per_pixel(table, height, width):
     
     # Aspect of height and width
     if height >= 1 and width == 1:
-        verically_repeated = table.reindex(table.index.repeat(height))
-        horizontally_repeated = verically_repeated.reindex(verically_repeated.columns.repeat(width), axis='columns')
-        final_matrix = horizontally_repeated
+        vertically_repeated = table.reindex(table.index.repeat(height))
+        final_matrix = vertically_repeated
         
     elif height >= 1 and width < 1:
         # average first
@@ -83,8 +82,8 @@ def modifiy_base_per_pixel(table, height, width):
         df_matrix_width_avg = table.rolling(width_rolling_avg, axis=1).mean().dropna(axis=1, how='any')
         avg_matrix = df_matrix_width_avg[df_matrix_width_avg.columns[::width_rolling_avg]]
         # repeat array vertically
-        verically_repeated = avg_matrix.reindex(avg_matrix.index.repeat(height))
-        final_matrix = verically_repeated
+        vertically_repeated = avg_matrix.reindex(avg_matrix.index.repeat(height))
+        final_matrix = vertically_repeated
 
     return final_matrix
 
@@ -167,7 +166,7 @@ def plt_image(df_matrix, black_val, frag_range, output_directory, height, width,
     
 if __name__ == '__main__':
     file, rows, black_val, range_frag, output_directory, region_size, height, width, identifier, gamma = sys.argv[1:]
-
+    print(gamma)
     chunksize = worker(int(rows))
 
     cols = [6,9,10] # fragment size column = 6, Coor_start column = 9, Coor_end column = 10
