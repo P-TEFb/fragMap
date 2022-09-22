@@ -1,6 +1,8 @@
 # fragMap.py #
 Juan F. Santana, Ph.D. (<juan-santana@uiowa.edu>), University of Iowa, Iowa City, I.A.
 
+Mrutyunjaya Parida, Ph.D. (<mrutyunjaya-parida@uiowa.edu>), University of Iowa, Iowa City, I.A.
+
 David H. Price, Ph.D. (<david-price@uiowa.edu>), University of Iowa, Iowa City, I.A.
 
 The fragMap program is split into two python scripts: fragMap.py and fragMap_associated_script.py which should be in the same directory. The program requires Linux operating system and Python 3+. It will create fragment heatmaps from specific range of fragment sizes over a chosen genomic interval as described in [Spector et al., 2022](https://www.nature.com/articles/s41467-022-29739-x). This program replaces code created by Mrutyunjaya Parida that was used to generate fragMaps in [Spector et al., 2022](https://www.nature.com/articles/s41467-022-29739-x), [Ball et al., 2022a](https://www.mdpi.com/1999-4915/14/4/779), [Ball et al., 2022b](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9239164/), and [Santana et al., 2022](https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkac678/6659871?guestAccessKey=88024805-7d8e-4421-a032-dbef1c737757).
