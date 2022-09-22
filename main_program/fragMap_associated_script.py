@@ -166,7 +166,6 @@ def plt_image(df_matrix, black_val, frag_range, output_directory, height, width,
     
 if __name__ == '__main__':
     file, rows, black_val, range_frag, output_directory, region_size, height, width, identifier, gamma = sys.argv[1:]
-    print(gamma)
     chunksize = worker(int(rows))
 
     cols = [6,9,10] # fragment size column = 6, Coor_start column = 9, Coor_end column = 10
