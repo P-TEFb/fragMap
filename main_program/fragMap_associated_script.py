@@ -98,11 +98,11 @@ def plt_image(df_matrix, black_val, frag_range, output_directory, height, width,
     else:
         black_val = int(black_val)
         
-    plt.rcParams['font.size'] = '6'
+    plt.rcParams['font.size'] = '9'
     plt.rcParams['figure.facecolor'] = 'white'
     plt.rcParams.update({'font.family':'arial'})
     
-    fig, ax = plt.subplots(dpi=1200)
+    fig, ax = plt.subplots(figsize=(12.6,9.6), dpi=1200)
     im = ax.imshow(df_matrix, vmin=0, vmax=black_val, cmap='binary')
     ax.tick_params(direction='out', length=1.8, width=0.3)
 
