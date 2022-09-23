@@ -54,7 +54,7 @@ def make_matrix(long_df, frag_range, x_array_length):
     matrix_unstacked = long_df.set_index(['Fragment_size','Coordinate']).unstack()
     
     # If row indices (y axis) are missing, add them and fill in value with 0. Also, any NaN is filled in with a 0
-    matrix_corrected_rows = matrix_unstacked.reindex(list(range(int(lengths[0]),int(lengths[1]))),fill_value=0).fillna(0)
+    matrix_corrected_rows = matrix_unstacked.reindex(list(range(int(lengths[0]),int(lengths[1])+1)),fill_value=0).fillna(0)
     
     # Drop a level of multi index (Count) is order to use the col indexes later on
     matrix_corrected_rows.columns = matrix_corrected_rows.columns.droplevel(0)
