@@ -54,12 +54,12 @@ def main(data_file,frags_filtering, max_val, output_directory, height, width, id
     # Select fragment sizes
     lengths = frags_filtering.split("-")
     size_left = int(lengths[0]) # inlcusive
-    size_right = int(lengths[1]) # NOT inclusive
+    size_right = int(lengths[1]) # inclusive
 
     if size_left > size_right:
         sys.exit("Fragment size range is incorrect")            
 
-    df_bedtools = df_bedtools.loc[(df_bedtools['Fragment_size'] >= size_left) & (df_bedtools['Fragment_size'] < size_right)].reset_index(drop=True)
+    df_bedtools = df_bedtools.loc[(df_bedtools['Fragment_size'] >= size_left) & (df_bedtools['Fragment_size'] <= size_right)].reset_index(drop=True)
     
     temp_data = Path(Path.cwd(),'data.bed')
     df_bedtools.to_csv(temp_data, sep="\t", index=False, header=False)
