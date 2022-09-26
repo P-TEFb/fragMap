@@ -2,7 +2,7 @@
 Original fragMap program Documentation. 
 Author: Mrutyunjaya “Rocky” Parida, and David Price.
 
-The fragMap program runs via a Python v2.7+ interpreter installed on your desired operating system of choice such as Windows, Mac or Linux. Here is the link to download the program: https://drive.google.com/file/d/1cPIhkDtagXnBZY1jP7DNyDltoLr8vjmM/view?usp=sharing.
+The fragMap program runs via a Python v2.7+ interpreter installed on Linux. Here is the link to download the program: https://drive.google.com/file/d/1cPIhkDtagXnBZY1jP7DNyDltoLr8vjmM/view?usp=sharing.
 
 First, the FRAGMAP-TABLE program makes a data table containing total number of mapped fragments for a range of fragment sizes and a set of equal size genomic intervals specified by a user. It also generates the maximum value in the table as a separate file with a “.max” extension.
 Syntax: 
