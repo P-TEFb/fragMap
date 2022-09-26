@@ -1,4 +1,4 @@
-# fragMap-original
+# fragMap (original program)
 Original fragMap program Documentation. 
 Author: Mrutyunjaya “Rocky” Parida, and David Price.
 
