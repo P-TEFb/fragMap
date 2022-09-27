@@ -13,7 +13,7 @@ The input regions file should be a six column, tab delimited bed file that conta
 
 The input fragments file should be a six column, tab delimited bed file that contains chromosome, start and end positions as well as the strand information for each fragment.
 
-| chr6 | 142946247 | 142946248 | A00876:119:HW5F5DRXX:2:2207:29170:1157 | 255 | - |
+| chr6 | 142946247 | 142946298 | A00876:119:HW5F5DRXX:2:2207:29170:1157 | 255 | - |
 |:----:|:---------:|:---------:|:--------------------------------------:|:---:|:-:|
 
 
