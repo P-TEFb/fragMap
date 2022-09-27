@@ -4,6 +4,7 @@ import subprocess
 import sys
 from pathlib import Path
 import argparse
+import fragMap_associated_script
 
 def run_bedtools(regions, reads):
     '''
@@ -13,15 +14,16 @@ def run_bedtools(regions, reads):
     # Check if every region has the same size
     dff = pd.read_csv(regions, sep="\t", header=None)
     dff['region_size'] = dff[2] - dff[1]
+    
     if len(dff['region_size'].unique()) != 1:
         sys.exit("Regions are not all of the same length")
-
-    temp_data_bedtools = Path(Path.cwd(),'bedtools_output.bed')
+    
+    # Run bedtools
     subprocess.call(' '.join(['bedtools intersect -a', regions, '-b', reads, '-wa', '-wb', '>', str(temp_data_bedtools)]), shell=True)
     
     return temp_data_bedtools
 
-def main(data_file,frags_filtering, max_val, output_directory, height, width, identifier, gamma):
+def main(data_file, max_val, output_directory, height, width, identifier, gamma, size_left, size_right):
     '''
     Gets bedtools output by uploading only a selected number of columns.
     Calculates fragment sizes, calculates coordinates of the fragments by strandeness of regions.
@@ -49,26 +51,20 @@ def main(data_file,frags_filtering, max_val, output_directory, height, width, id
     df_bedtools = df_bedtools[df_bedtools['Coor_start'] < region_size]
     
     # Calculate total rows 
-    total_rows = df_bedtools.shape[0]
+    total_rows = df_bedtools.shape[0]         
     
-    # Select fragment sizes
-    lengths = frags_filtering.split("-")
-    size_left = int(lengths[0]) # inlcusive
-    size_right = int(lengths[1]) # inclusive
-
-    if size_left > size_right:
-        sys.exit("Fragment size range is incorrect")            
-
+    # Filter data by fragment sizes
     df_bedtools = df_bedtools.loc[(df_bedtools['Fragment_size'] >= size_left) & (df_bedtools['Fragment_size'] <= size_right)].reset_index(drop=True)
     
-    temp_data = Path(Path.cwd(),'data.bed')
+    # Create data file 
     df_bedtools.to_csv(temp_data, sep="\t", index=False, header=False)
     
-    subprocess.run(['python3', 'fragMap_associated_script.py', temp_data, str(total_rows), str(max_val), str(fragment_sizes), output_directory, str(region_size), str(height), str(width), identifier, str(gamma)])
+    return total_rows, region_size
 
-    temp_data.unlink()
-    
-if __name__ == '__main__':
+def parse_args():
+    '''
+    Get arguments and make multiple checks
+    '''
     
     parser = argparse.ArgumentParser(prog='fragMap.py',
                                      description='Generates a fragMap from specific range of fragment sizes over a chosen genomic interval')
@@ -99,7 +95,7 @@ if __name__ == '__main__':
     width = args.x_axis
     gamma = args.gamma
     output_directory, identifier = args.output_dir
-
+    
     if len(sys.argv[1:]) != 4:
         sys.argv.append('--help')
     try:
@@ -113,8 +109,36 @@ if __name__ == '__main__':
             int(max_val) or float(max_val)
         except (TypeError, AttributeError, ValueError):
             sys.exit("black value: int or default") 
+            
+    # Fragment sizes
+    size_left, size_right = args.range # inlcusive
+
+    if size_left > size_right:
+        sys.exit("Fragment size range is incorrect")         
+            
+    return file, read_file, fragment_sizes, max_val, height, width, gamma, output_directory, identifier, size_left, size_right
     
-    bedtools_file_path = run_bedtools(file, read_file)    
-    main(bedtools_file_path, fragment_sizes, max_val, output_directory, height, width, identifier, gamma)
-    # delete temp file
+if __name__ == '__main__':
+    file, read_file, fragment_sizes, max_val, height, width, gamma, output_directory, identifier, size_left, size_right = parse_args()
+    
+    temp_data_bedtools = Path(Path.cwd(),'bedtools_output.bed')
+    bedtools_file_path = run_bedtools(file, read_file) 
+    
+    temp_data = Path(Path.cwd(),'data.bed')
+    total_rows, region_size = main(bedtools_file_path, max_val, output_directory, height, width, identifier, gamma, size_left, size_right)
+        
+    # Run the associated script on the filtered data
+    fragMap_associated_script.main(temp_data,
+                                   total_rows,
+                                   max_val,
+                                   fragment_sizes,
+                                   output_directory,
+                                   region_size,
+                                   height,
+                                   width,
+                                   identifier,
+                                   gamma)
+
+    # delete temp files
     bedtools_file_path.unlink()
+    temp_data.unlink()
