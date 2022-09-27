@@ -54,9 +54,11 @@ def main(data_file, max_val, output_directory, height, width, identifier, gamma,
     
     # Calculate total rows 
     total_rows = df_bedtools.shape[0]         
-
+    
+    # Filter by fragment size
     df_bedtools = df_bedtools.loc[(df_bedtools['Fragment_size'] >= size_left) & (df_bedtools['Fragment_size'] <= size_right)].reset_index(drop=True)
     
+    # Create tmp file
     df_bedtools.to_csv(temp_data, sep="\t", index=False, header=False)
     
     return total_rows, region_size
