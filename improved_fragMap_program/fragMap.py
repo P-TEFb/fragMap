@@ -4,7 +4,10 @@ import subprocess
 import sys
 from pathlib import Path
 import argparse
-import fragMap_associated_script
+try:
+    import fragMap_associated_script
+except (ImportError, ModuleNotFoundError):
+    sys.exit("fragMap_associated_script.py was not imported correctly. Make sure that it is in the same directory as fragMap.py")
 
 def run_bedtools(regions, reads):
     '''
@@ -17,16 +20,16 @@ def run_bedtools(regions, reads):
     
     if len(dff['region_size'].unique()) != 1:
         sys.exit("Regions are not all of the same length")
-    
-    # Run bedtools
+
     subprocess.call(' '.join(['bedtools intersect -a', regions, '-b', reads, '-wa', '-wb', '>', str(temp_data_bedtools)]), shell=True)
     
     return temp_data_bedtools
 
 def main(data_file, max_val, output_directory, height, width, identifier, gamma, size_left, size_right):
     '''
-    Gets bedtools output by uploading only a selected number of columns
-    Calculates fragment sizes, calculates coordinates of the fragments by strandeness of regions 
+    Gets bedtools output by uploading only a selected number of columns.
+    Calculates fragment sizes, calculates coordinates of the fragments by strandeness of regions.
+    Runs the second program associated with fragmap.py    
     '''
     
     cols = [1,2,5,7,8,11]
@@ -51,11 +54,9 @@ def main(data_file, max_val, output_directory, height, width, identifier, gamma,
     
     # Calculate total rows 
     total_rows = df_bedtools.shape[0]         
-    
-    # Filter data by fragment sizes
+
     df_bedtools = df_bedtools.loc[(df_bedtools['Fragment_size'] >= size_left) & (df_bedtools['Fragment_size'] <= size_right)].reset_index(drop=True)
     
-    # Create data file 
     df_bedtools.to_csv(temp_data, sep="\t", index=False, header=False)
     
     return total_rows, region_size
