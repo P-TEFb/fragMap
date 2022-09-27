@@ -25,9 +25,8 @@ def run_bedtools(regions, reads):
 
 def main(data_file, max_val, output_directory, height, width, identifier, gamma, size_left, size_right):
     '''
-    Gets bedtools output by uploading only a selected number of columns.
-    Calculates fragment sizes, calculates coordinates of the fragments by strandeness of regions.
-    Runs the second program associated with fragmap.py    
+    Gets bedtools output by uploading only a selected number of columns
+    Calculates fragment sizes, calculates coordinates of the fragments by strandeness of regions 
     '''
     
     cols = [1,2,5,7,8,11]
