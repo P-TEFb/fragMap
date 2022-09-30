@@ -41,6 +41,7 @@ def x_y_z_cols(df_chunk):
         final['Fragment_size'].extend(frag_size_associated_base_frag)
 
     final_df = pd.DataFrame(final)
+    final_df = final_df.groupby(by=['Fragment_size','Coordinate']).size().reset_index().rename(columns = {0:'Count'})
     return final_df
 
 def make_matrix(long_df, frag_range, x_array_length):
@@ -173,7 +174,7 @@ def main(file, rows, black_val, range_frag, output_directory, region_size, heigh
     pool = mp.Pool(mp.cpu_count())
     hist_cols_df = pool.map(x_y_z_cols, [read for read in reader])
     pool.close()
-    df_to_graph = pd.concat(hist_cols_df).groupby(by=['Fragment_size','Coordinate']).size().reset_index().rename(columns = {0:'Count'})
+    df_to_graph = pd.concat(hist_cols_df).groupby(by=['Fragment_size','Coordinate']).sum().reset_index()
     big_df = make_matrix(df_to_graph, range_frag, int(region_size))
 
     if float(height) == 1.0 and float(width) == 1.0:
