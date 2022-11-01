@@ -41,8 +41,11 @@ def x_y_z_cols(df_chunk):
         final['Fragment_size'].extend(frag_size_associated_base_frag)
 
     final_df = pd.DataFrame(final)
-    final_df = final_df.groupby(by=['Fragment_size','Coordinate']).size().reset_index().rename(columns = {0:'Count'})
-    return final_df
+    if final_df.empty:
+        pass
+    else:
+        final_df = final_df.groupby(by=['Fragment_size','Coordinate']).size().reset_index().rename(columns = {0:'Count'})
+        return final_df
 
 def make_matrix(long_df, frag_range, x_array_length):
     '''
