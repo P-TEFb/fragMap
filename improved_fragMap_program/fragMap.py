@@ -39,7 +39,7 @@ def main(data_file, max_val, output_directory, height, width, identifier, gamma,
     region_size = df_bedtools[2][0] - df_bedtools[1][0]
     
     # Fragment size col
-    df_bedtools['Fragment_size'] = df_bedtools[8] - df_bedtools[7]
+    df_bedtools['Fragment_size'] = (df_bedtools[8] - df_bedtools[7]) + 1
     
     # Convert intervals where one or both of the sides are smaller or larger than the region into the region limits 
     df_bedtools['New_read_start'] = np.where(df_bedtools[7] < df_bedtools[1], df_bedtools[1], df_bedtools[7])
