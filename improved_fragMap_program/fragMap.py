@@ -96,7 +96,7 @@ def parse_args():
     height = args.y_axis
     width = args.x_axis
     gamma = args.gamma
-    output_directory, identifier = args.output_dir
+    identifier, output_directory = args.output_dir
     
     if len(sys.argv[1:]) != 4:
         sys.argv.append('--help')
